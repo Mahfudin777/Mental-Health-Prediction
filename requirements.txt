@@ -1,2 +1,6 @@
 streamlit
 openai
+joblib
+numpy
+panda
+scikit-learn
