@@ -5,38 +5,17 @@ import numpy as np
 import altair as alt
 import joblib
 st.title("💬 Mental Health Detection")
-st.write(st.secrets)
-st.write(f"Port before conversion: {st.secrets['mysql']['port']}")
-st.write(f"Port after conversion: {int(st.secrets['mysql']['port'])}")
+
 # Load the prediction model
 pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
 # Database connection
-try:
-    conn = mysql.connector.connect(
-        host=st.secrets["mysql"]["host"],
-        user=st.secrets["mysql"]["user"],
-        password=st.secrets["mysql"]["password"],
-        database=st.secrets["mysql"]["database"],
-        port=st.secrets["mysql"]["port"],
-    )
-    st.success("Connected to the database!")
-except mysql.connector.Error as err:
-    st.error(f"Database connection failed: {err}")
-    cursor = conn.cursor()
+
 
 
 
 # Create table if it doesn't exist
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS prediksi (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    text_input TEXT,
-    prediction VARCHAR(255),
-    confidence FLOAT
-)
-''')
-conn.commit()
+
 
 def predict_text(docx):
     results = pipe_lr.predict([docx])
@@ -66,9 +45,7 @@ def main():
         proba_df_clean.columns = ["status", "probability"]
 
         # Insert prediction into the database
-        cursor.execute("INSERT INTO prediksi (text_input, prediction, confidence) VALUES (%s, %s, %s)", 
-                       (raw_text, prediction, confidence))
-        conn.commit()
+
 
         with col1:
             st.success("Original Text")
