@@ -1,4 +1,8 @@
+import streamlit as st
+from openai import OpenAI
 
+# Show title and description.
+st.title("💬 Mental Health Detection")
 import streamlit as st
 
 import pandas as pd
@@ -7,13 +11,12 @@ import altair as alt
 
 import joblib
 
-pipe_lr = joblib.load(open("model/text_emotion.pkl", "rb"))
-
-emotions_emoji_dict = {"anger": "😠", "disgust": "🤮", "fear": "😨😱", "happy": "🤗", "joy": "😂", "neutral": "😐", "sad": "😔",
-                       "sadness": "😔", "shame": "😳", "surprise": "😮"}
+pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
 
-def predict_emotions(docx):
+
+
+def predict_text(docx):
     results = pipe_lr.predict([docx])
     return results[0]
 
@@ -24,8 +27,8 @@ def get_prediction_proba(docx):
 
 
 def main():
-    st.title("Text Emotion Detection")
-    st.subheader("Detect Emotions In Text")
+    st.title("Mental Health Detection")
+    st.subheader("Detect Mental Health In Text")
 
     with st.form(key='my_form'):
         raw_text = st.text_area("Type Here")
@@ -34,7 +37,7 @@ def main():
     if submit_text:
         col1, col2 = st.columns(2)
 
-        prediction = predict_emotions(raw_text)
+        prediction = predict_text(raw_text)
         probability = get_prediction_proba(raw_text)
 
         with col1:
@@ -42,8 +45,8 @@ def main():
             st.write(raw_text)
 
             st.success("Prediction")
-            emoji_icon = emotions_emoji_dict[prediction]
-            st.write("{}:{}".format(prediction, emoji_icon))
+
+            st.write("{}".format(prediction))
             st.write("Confidence:{}".format(np.max(probability)))
 
         with col2:
@@ -52,9 +55,9 @@ def main():
             proba_df = pd.DataFrame(probability, columns=pipe_lr.classes_)
             #st.write(proba_df.T)
             proba_df_clean = proba_df.T.reset_index()
-            proba_df_clean.columns = ["emotions", "probability"]
+            proba_df_clean.columns = ["status", "probability"]
 
-            fig = alt.Chart(proba_df_clean).mark_bar().encode(x='emotions', y='probability', color='emotions')
+            fig = alt.Chart(proba_df_clean).mark_bar().encode(x='status', y='probability', color='status')
             st.altair_chart(fig, use_container_width=True)
 
 
