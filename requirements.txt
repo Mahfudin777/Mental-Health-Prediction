@@ -4,4 +4,4 @@ joblib
 numpy
 panda
 scikit-learn
-mysql
+mysql.connector
