@@ -61,11 +61,6 @@ def main():
             fig = alt.Chart(proba_df_clean).mark_bar().encode(x='status', y='probability', color='status')
             st.altair_chart(fig, use_container_width=True)
 
-        # Display a success message
-        st.info("Prediction saved to the database!")
-
 if __name__ == '__main__':
     main()
 
-# Close the connection when the script ends
-conn.close()
