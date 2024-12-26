@@ -5,6 +5,7 @@ import numpy as np
 import altair as alt
 import joblib
 st.title("💬 Mental Health Detection")
+st.write(st.secrets)
 # Load the prediction model
 pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
