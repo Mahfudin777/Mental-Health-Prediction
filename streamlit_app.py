@@ -23,7 +23,7 @@ try:
     st.success("Connected to the database!")
 except mysql.connector.Error as err:
     st.error(f"Database connection failed: {err}")
-cursor = conn.cursor()
+    cursor = conn.cursor()
 
 
 
