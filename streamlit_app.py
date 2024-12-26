@@ -13,7 +13,7 @@ try:
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="your_password",
+    password="",
     database="mental_health"
 )
 except mysql.connector.Error as err :
