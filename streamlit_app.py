@@ -10,12 +10,16 @@ st.write(st.secrets)
 pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
 # Database connection
-conn = mysql.connector.connect(
-    host=st.secrets["mysql"]["host"],
-    user=st.secrets["mysql"]["user"],
-    password=st.secrets["mysql"]["password"],
-    database=st.secrets["mysql"]["database"],
-)
+try:
+    conn = mysql.connector.connect(
+        host=st.secrets["mysql"]["host"],
+        user=st.secrets["mysql"]["user"],
+        password=st.secrets["mysql"]["password"],
+        database=st.secrets["mysql"]["database"],
+    )
+    st.success("Connected to the database!")
+except mysql.connector.Error as err:
+    st.error(f"Database connection failed: {err}")
 cursor = conn.cursor()
 
 
