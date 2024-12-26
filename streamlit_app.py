@@ -13,7 +13,7 @@ conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    database="mental_health"
+    database="mental_health",
     port=3306
 )
 cursor = conn.cursor()
