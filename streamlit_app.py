@@ -16,10 +16,11 @@ try:
         password="",
         database="mental_health"
     )
-    except mysql.connector.Error as err :
-        st.error(f"Error:{err}")
-        conn = none
-cursor = conn.cursor()
+    cursor = conn.cursor()
+except mysql.connector.Error as err :
+    st.error(f"Error:{err}")
+    conn = none
+
 
 # Create table if it doesn't exist
 cursor.execute('''
