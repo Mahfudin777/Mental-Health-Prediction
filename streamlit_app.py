@@ -39,27 +39,25 @@ def main():
 
         prediction = predict_text(raw_text)
         probability = get_prediction_proba(raw_text)
+        proba_df = pd.DataFrame(probability, columns=pipe_lr.classes_)
+        proba_df_clean = proba_df.T.reset_index()
+        proba_df_clean.columns = ["status", "probability"]
 
         with col1:
             st.success("Original Text")
             st.write(raw_text)
 
             st.success("Prediction")
-
-            st.write("{}".format(prediction))
-            st.write("Confidence:{}".format(np.max(probability)))
-
+            
+            st.success("Status:{}".format(prediction))
+            st.success("Confidence:{}".format(np.max(probability)))
+            st.write(proba_df_clean)
         with col2:
             st.success("Prediction Probability")
-            #st.write(probability)
-            proba_df = pd.DataFrame(probability, columns=pipe_lr.classes_)
-            #st.write(proba_df.T)
-            proba_df_clean = proba_df.T.reset_index()
-            proba_df_clean.columns = ["status", "probability"]
+
 
             fig = alt.Chart(proba_df_clean).mark_bar().encode(x='status', y='probability', color='status')
             st.altair_chart(fig, use_container_width=True)
-
 
 
 
