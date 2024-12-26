@@ -6,7 +6,7 @@ import altair as alt
 import joblib
 st.title("💬 Mental Health Detection")
 st.write(st.secrets)
-st.write(type(st.secrets["mysql"][port]))  # Harus menunjukkan <class 'int'>
+st.write(type(st.secrets["mysql"]["port"]))  # Harus menunjukkan <class 'int'>
 # Load the prediction model
 pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
@@ -17,7 +17,7 @@ try:
         user=st.secrets["mysql"]["user"],
         password=st.secrets["mysql"]["password"],
         database=st.secrets["mysql"]["database"],
-        port=st.secrets["mysql"][port],
+        port=st.secrets["mysql"]["port"],
     )
     st.success("Connected to the database!")
 except mysql.connector.Error as err:
