@@ -6,7 +6,7 @@ import altair as alt
 import joblib
 st.title("💬 Mental Health Detection")
 st.write(st.secrets)
-st.write(type(st.secrets["mysql"]["port"]))  # Harus menunjukkan <class 'int'>
+st.write(type(st.secrets["mysql"][port]))  # Harus menunjukkan <class 'int'>
 # Load the prediction model
 pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
