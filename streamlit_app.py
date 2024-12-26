@@ -11,10 +11,10 @@ pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
 # Database connection
 conn = mysql.connector.connect(
-    host=st.secrets["mysql"]["localhost"],
-    user=st.secret["mysql"]["root"],
-    password=st.secret["mysql"][""],
-    database=st.secret["mysql"]["mental_health"],
+    host=st.secrets["mysql"]["host"],
+    user=st.secret["mysql"]["user"],
+    password=st.secret["mysql"]["password"],
+    database=st.secret["mysql"]["database"],
 )
 cursor = conn.cursor()
 
