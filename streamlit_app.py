@@ -16,6 +16,7 @@ try:
         user=st.secrets["mysql"]["user"],
         password=st.secrets["mysql"]["password"],
         database=st.secrets["mysql"]["database"],
+        port=st.secrets["mysql"]["port"],
     )
     st.success("Connected to the database!")
 except mysql.connector.Error as err:
