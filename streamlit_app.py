@@ -9,12 +9,16 @@ st.title("💬 Mental Health Detection")
 pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
 # Database connection
+try:
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="your_password",
     database="mental_health"
 )
+except mysql.connector.Error as err :
+    st.error(f"Error:{err}")
+    conn = none
 cursor = conn.cursor()
 
 # Create table if it doesn't exist
