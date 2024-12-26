@@ -14,6 +14,7 @@ conn = mysql.connector.connect(
     user="root",
     password="",
     database="mental_health"
+    port=3306
 )
 cursor = conn.cursor()
 
