@@ -5,4 +5,4 @@ numpy
 panda
 scikit-learn
 mysql-connector-python
-googletrans
+Translator
