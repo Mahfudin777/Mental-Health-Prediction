@@ -17,6 +17,11 @@ pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
 # Create table if it doesn't exist
 
+def translate_text(text,target_language = 'en'):
+    translator = Translator()
+    translation = translator.translate(text, dest = 'en')
+    return translation.text
+
 
 def predict_text(docx):
     results = pipe_lr.predict([docx])
@@ -34,7 +39,8 @@ def main():
         raw_text = st.text_area("Type Here")
         submit_text = st.form_submit_button(label='Submit')
         
-def translate_text(raw_text,target_language = 'en')
+    translated_text = translate_text(raw_text, target_languange)
+    
 
     if submit_text:
         col1, col2 = st.columns(2)
