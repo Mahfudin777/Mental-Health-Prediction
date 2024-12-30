@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import joblib
+import Translator
 st.title("💬 Mental Health Detection")
 
 # Load the prediction model
@@ -32,12 +33,14 @@ def main():
     with st.form(key='my_form'):
         raw_text = st.text_area("Type Here")
         submit_text = st.form_submit_button(label='Submit')
+        
+def translate_text(raw_text,target_language = 'en')
 
     if submit_text:
         col1, col2 = st.columns(2)
 
         # Make predictions
-        prediction = predict_text(raw_text)
+        prediction = predict_text(translate_text)
         probability = get_prediction_proba(raw_text)
         confidence = np.max(probability)
         proba_df = pd.DataFrame(probability, columns=pipe_lr.classes_)
