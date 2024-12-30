@@ -19,7 +19,7 @@ pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
 def translate_text(text,target_language = 'en'):
     translator = Translator()
-    translation = translator.translate(text, dest='en')
+    translation = translator.translate(text, target_language)
     return translation.text
 
 def predict_text(docx):
