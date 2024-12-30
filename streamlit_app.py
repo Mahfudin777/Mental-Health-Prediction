@@ -19,9 +19,8 @@ pipe_lr = joblib.load(open("model/text_prediction.pkl", "rb"))
 
 def translate_text(text,target_language = 'en'):
     translator = Translator()
-    translation = translator.translate(text, dest =target_language)
+    translation = translator.translate(text, dest=target_language)
     return translation.text
-
 
 def predict_text(docx):
     results = pipe_lr.predict([docx])
@@ -38,9 +37,9 @@ def main():
     with st.form(key='my_form'):
         raw_text = st.text_area("Type Here")
         submit_text = st.form_submit_button(label='Submit')
+        target_language = 'en'
 
-    
-    target_language = 'en'    
+       
     translated_text = translate_text(raw_text, target_languange)
     
 
@@ -48,7 +47,7 @@ def main():
         col1, col2 = st.columns(2)
 
         # Make predictions
-        prediction = predict_text(translate_text)
+        prediction = predict_text(translated_text)
         probability = get_prediction_proba(raw_text)
         confidence = np.max(probability)
         proba_df = pd.DataFrame(probability, columns=pipe_lr.classes_)
