@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import joblib
-import Translator
+from googletrans import Translator
 st.title("💬 Mental Health Detection")
 
 # Load the prediction model
