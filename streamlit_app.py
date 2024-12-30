@@ -40,7 +40,7 @@ def main():
         target_language = 'en'
 
        
-    translated_text = translate_text(raw_text, target_languange)
+    translated_text = translate_text(raw_text, target_language)
     
 
     if submit_text:
