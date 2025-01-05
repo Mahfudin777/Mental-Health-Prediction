@@ -1,7 +1,7 @@
 # 💬 Mental Health Prediction
 
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)][(https://mental-health-prediction-mkbocwxrryuor2k25caqnu.streamlit.app/)]
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://mental-health-prediction-mkbocwxrryuor2k25caqnu.streamlit.app/)
 
 ### How to run it on your own machine
 
